@@ -4,6 +4,7 @@
         "container",
         "file",
         "middlewares",
+        "originalname",
         "tesseract",
         "uploader"
     ]

@@ -5,9 +5,12 @@ const { createWorker } = require("tesseract.js");
 const cors = require("cors");
 const worker = createWorker();
 const mongoose = require("mongoose");
+const path = require("path");
 const port = process.env.PORT || 5000;
 const http = require("http").createServer(app);
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
+
 exports.rootDirectory = __dirname;
 
 const corsOptions = {
@@ -43,12 +46,14 @@ mongoose
   });
 
 // middleware
-app.use("/Files", express.static("Files"));
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use("/Files", express.static(path.resolve("./ocr-server/Files")));
+app.use(morgan("dev"));
 
+console.log(path.resolve("./ocr-server/Files"));
 //   model for database
 const Bill = require("./api/models/Bill");
 
@@ -60,6 +65,7 @@ app.use("/bill", routes);
 app.get("/", function (req, res, next) {
   res.status(403).send("FORBIDDEN");
 });
+
 // Listening
 http.listen(port, function () {
   console.log(" REST API server Started on " + port);

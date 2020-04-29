@@ -10,5 +10,11 @@ const FilterMiddleware = require("../middlewares/FilterMiddleware");
 var BillController = require("../controllers/BillController.js");
 
 router.get("/all", BillController.get_all_bill);
-router.post("/create", BillController.create_bill);
+
+router.post(
+  "/upload/:moduleName/:elementId",
+  multer().any(),
+  FileMiddleware.upload_file
+);
+
 module.exports = router;

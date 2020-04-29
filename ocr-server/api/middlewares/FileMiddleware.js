@@ -1,16 +1,14 @@
 const fs = require("fs");
-const rootDir = require("../..");
+const rootDir = require("../..").rootDirectory;
 const mongoose = require("mongoose");
 const Bill = mongoose.model("Bill");
 
-const admin_api_url = "http://127.0.0.1:3004";
-// importing controller
-const BillControllers = require("../controllers/BillController");
+const baseUrl = "http://127.0.0.1:5000";
 
 exports.upload_file = (req, res, next) => {
-  var splits = req.files[0].originalname.split(".");
-  var dirPath = `${rootDir}/Files/${req.params.moduleName}/`;
-  var filePath = `${rootDir}/Files/${req.params.moduleName}/${
+  const splits = req.files[0].originalname.split(".");
+  const dirPath = `${rootDir}/Files/${req.params.moduleName}/`;
+  const filePath = `${rootDir}/Files/${req.params.moduleName}/${
     req.params.elementId
   }.${splits[splits.length - 1]}`;
   if (fs.existsSync(dirPath)) {
@@ -19,12 +17,12 @@ exports.upload_file = (req, res, next) => {
     fs.mkdirSync(dirPath, { recursive: true });
     fs.writeFileSync(filePath, req.files[0].buffer);
   }
-  var networkPath = `${admin_api_url}/Files/${req.params.moduleName}/${
+  const networkPath = `${baseUrl}/Files/${req.params.moduleName}/${
     req.params.elementId
   }.${splits[splits.length - 1]}`;
   switch (req.params.moduleName) {
-    case "brand":
-      Brand.findOneAndUpdate(
+    case "bill":
+      Bill.findOneAndUpdate(
         { _id: req.params.elementId },
         { bill_img: networkPath },
         { new: true }
