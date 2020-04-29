@@ -12,6 +12,7 @@ const BillSchema = new Schema(
     bill_content: {
       type: Object,
     },
+    bill_img: { type: String, required: true },
   },
   {
     timestamps: true,
