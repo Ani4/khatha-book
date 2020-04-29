@@ -40,27 +40,27 @@ class App extends Component {
           console.error(err);
         })
         .then(console.log, console.log);
-      // .then((result) => {
-      //   // Get Confidence score
-      //   let confidence = result.confidence;
+      .then((result) => {
+        // Get Confidence score
+        let confidence = result.confidence;
 
-      //   // Get full output
-      //   let text = result.text;
+        // Get full output
+        let text = result.text;
 
-      //   // Get codes
-      //   let pattern = /\b\w{10,10}\b/g;
-      //   let patterns = result.text.match(pattern);
+        // Get codes
+        let pattern = /\b\w{10,10}\b/g;
+        let patterns = result.text.match(pattern);
 
-      //   // Update state
-      //   this.setState({
-      //     patterns: this.state.patterns.concat(patterns),
-      //     documents: this.state.documents.concat({
-      //       pattern: patterns,
-      //       text: text,
-      //       confidence: confidence,
-      //     }),
-      //   });
-      // });
+        // Update state
+        this.setState({
+          patterns: this.state.patterns.concat(patterns),
+          documents: this.state.documents.concat({
+            pattern: patterns,
+            text: text,
+            confidence: confidence,
+          }),
+        });
+      });
     }
   };
   render() {

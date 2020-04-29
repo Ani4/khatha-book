@@ -6,10 +6,12 @@ const NonStrictSchema = require("./non_strict_schema.js");
 
 const BillSchema = new Schema(
   {
-    bill_no: Schema.Types.ObjectId,
+    bill_no: String,
     bill_name: String,
-    customer_id: Schema.Types.ObjectId,
-    bill_content: [NonStrictSchema],
+    // customer_id: Schema.Types.ObjectId,
+    bill_content: {
+      type: Object,
+    },
   },
   {
     timestamps: true,
