@@ -1,7 +1,34 @@
 import React, { useState, useEffect } from "react";
 import Routers from "../Routes/Routers";
 import SideBar from "./SideBar";
+import { Link } from "react-router-dom";
+
 export default function Dashboard() {
+    const [width, setWidth] = React.useState(window.innerWidth);
+    const [height, setHeight] = React.useState(window.innerHeight);
+    const updateWidthAndHeight = () => {
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
+        if (width > 768)
+            document.querySelector(".sidebar").style.display = "block";
+        else if (width < 768)
+            document.querySelector(".sidebar").style.display = "none";
+    };
+    useEffect(() => {
+        window.addEventListener("resize", updateWidthAndHeight);
+        return () => {
+            window.removeEventListener("resize", updateWidthAndHeight);
+        };
+    });
+    const toggleSideBarDisplay = () => {
+        let SB = document.querySelector(".sidebar").style.display;
+
+        if (SB === "block")
+            document.querySelector(".sidebar").style.display = "none";
+        else document.querySelector(".sidebar").style.display = "block";
+
+        console.log(document.querySelector(".sidebar").style.display);
+    };
     return (
         <>
             <div id="wrapper">
@@ -10,12 +37,18 @@ export default function Dashboard() {
                 {/* END */}
                 <div className="d-flex flex-column" id="content-wrapper">
                     <div id="content">
-                        <nav className="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                        <nav
+                            className="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top"
+                            id="#to-top"
+                        >
                             <div className="container-fluid">
                                 <button
                                     className="btn btn-link d-md-none rounded-circle mr-3"
                                     id="sidebarToggleTop"
                                     type="button"
+                                    onClick={() => {
+                                        toggleSideBarDisplay();
+                                    }}
                                 >
                                     <i className="fas fa-bars" />
                                 </button>
@@ -136,61 +169,58 @@ export default function Dashboard() {
                         {/* FIXME: here we r going to add */}
                         <Routers />
                     </div>
-                    <footer className="bg-white sticky-footer">
-                        <div className="container my-auto">
-                            <div className="text-center my-auto copyright">
-                                <div className="d-flex flex-row align-items-center index-top-info">
-                                    <div className="container">
-                                        <div className="row">
-                                            <div className="col social-links">
-                                                <div className="float-left">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="fa fa-github" />
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="fa fa-twitter" />
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="fa fa-instagram" />
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="fa fa-linkedin" />
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div className="col contact-information">
-                                                <div className="float-right">
-                                                    <span />
-                                                    <span>
-                                                        Build during Major
-                                                        Project
-                                                    </span>
-                                                </div>
-                                            </div>
+                    <footer className="sticky-footer pt-0 pb-0">
+                        <div className="d-flex flex-row align-items-center index-top-info">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col social-links">
+                                        <div className="float-left">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <i className="fa fa-github" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i className="fa fa-twitter" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i className="fa fa-instagram" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i className="fa fa-linkedin" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="col contact-information">
+                                        <div className="float-right">
+                                            <span />
+                                            <span>
+                                                Build during Major Project
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <span>Copyright © Brand 2020</span>
                             </div>
                         </div>
                     </footer>
                 </div>
-                <a
+                {/* FIXME: button to top */}
+                <Link
+                    onClick={() => {
+                        window.scroll(0, 0);
+                    }}
                     className="border rounded d-inline scroll-to-top"
-                    href="#page-top"
                 >
                     <i className="fas fa-angle-up" />
-                </a>
+                </Link>
             </div>
         </>
     );

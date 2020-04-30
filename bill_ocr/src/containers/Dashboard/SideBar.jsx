@@ -40,10 +40,14 @@ export default function SideBar() {
                         </NavLink>
                     </li>
                     <li className="nav-item" role="presentation">
-                        {/* <NavLink className="nav-link" href="table.html">
-                                <i className="fas fa-table" />
-                                <span>Bill Submission&nbsp;</span>
-                            </NavLink> */}
+                        <NavLink
+                            activeClassName="active"
+                            className="nav-link"
+                            to="/bill-submission"
+                        >
+                            <i className="fas fa-table" />
+                            <span>Bill Submission&nbsp;</span>
+                        </NavLink>
                     </li>
                     <li className="nav-item" role="presentation" />
                     <li className="nav-item" role="presentation" />
