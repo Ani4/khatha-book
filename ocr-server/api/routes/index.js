@@ -16,5 +16,6 @@ router.post(
   multer().any(),
   FileMiddleware.upload_file
 );
+router.post("/create",BillController.create_bill);
 
 module.exports = router;
