@@ -53,13 +53,13 @@ export default function SideBar() {
                     <li className="nav-item" role="presentation" />
                 </ul>
 
-                <div className="text-center d-none d-md-inline">
+                <Link to={"/gallery/bill/123"} className="text-center d-none d-md-inline">
                     <button
                         className="btn rounded-circle border-0"
                         id="sidebarToggle"
                         type="button"
                     />
-                </div>
+                </Link>
             </div>
         </nav>
     );
