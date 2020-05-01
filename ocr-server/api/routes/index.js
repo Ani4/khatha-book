@@ -16,6 +16,12 @@ router.post(
   multer().any(),
   FileMiddleware.upload_file
 );
-router.post("/create",BillController.create_bill);
+router.post("/create", BillController.create_bill);
+
+router.get("/total", FilterMiddleware, BillController.total);
+
+router.get("/total/:id", BillController.total);
+
+router.get("/number_of_bills", BillController.number_of_bills);
 
 module.exports = router;

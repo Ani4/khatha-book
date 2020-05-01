@@ -13,6 +13,7 @@ const BillSchema = new Schema(
       type: Object,
     },
     bill_img: { type: String, required: true },
+    total: Number,
   },
   {
     timestamps: true,
