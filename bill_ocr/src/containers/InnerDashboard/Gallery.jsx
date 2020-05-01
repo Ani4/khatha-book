@@ -16,7 +16,8 @@ export default function Gallery() {
                         <div className="px-lg-5">
                             <div className="row">
                                 {/* Gallery item */}
-                                {cardItem && cardItem.map((item) => <Card />)}
+                                {cardItem &&
+                                    cardItem.map((item, i) => <Card key={i} />)}
                                 {/* End */}
                             </div>
                         </div>
