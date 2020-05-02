@@ -11,10 +11,12 @@ var BillController = require("../controllers/BillController.js");
 
 router.get("/all", BillController.get_all_bill);
 
+router.post("/:id", BillController.get_bill);
+
 router.post(
-  "/upload/:moduleName/:elementId",
-  multer().any(),
-  FileMiddleware.upload_file
+    "/upload/:moduleName/:elementId",
+    multer().any(),
+    FileMiddleware.upload_file
 );
 router.post("/create", BillController.create_bill);
 

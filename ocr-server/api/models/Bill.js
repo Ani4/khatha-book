@@ -8,12 +8,12 @@ const BillSchema = new Schema(
   {
     bill_no: String,
     bill_name: String,
-    // customer_id: Schema.Types.ObjectId,
     bill_content: {
       type: Object,
     },
-    bill_img: { type: String, required: true },
+    bill_img: { type: String },
     total: Number,
+    bill_raw_data: String,
   },
   {
     timestamps: true,

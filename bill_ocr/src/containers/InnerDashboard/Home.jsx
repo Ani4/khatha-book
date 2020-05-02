@@ -39,7 +39,7 @@ export default function Home() {
                     <span>Number of Bills</span>
                   </div>
                   <div className="text-dark font-weight-bold h5 mb-0">
-                    <span>{numberOfBills}</span>
+                    <span>{numberOfBills + 0}</span>
                   </div>
                 </div>
                 <div className="col-auto">
@@ -58,7 +58,7 @@ export default function Home() {
                     <span>Total EXpenses</span>
                   </div>
                   <div className="text-dark font-weight-bold h5 mb-0">
-                    <span>&#8377; {total}</span>
+                    <span>&#8377; {total + 0}</span>
                   </div>
                 </div>
                 <div className="col-auto">

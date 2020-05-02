@@ -23,7 +23,7 @@ I build this for my colg project
 
 3.  go to ocr-server folder
 
-    ```bash
+    ```
     cd ocr-server/
     npm i
     ```
