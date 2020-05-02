@@ -18,7 +18,6 @@ export default function Card(props) {
                 />
                 <div className="p-4">
                     <h5>
-                        {" "}
                         <p className="text-dark">{props.data.bill_name}</p>
                     </h5>
                     <p className="small text-muted mb-0">
@@ -30,7 +29,7 @@ export default function Card(props) {
                             <span className="font-weight-bold">TOTAL</span>
                         </p>
                         <div className="badge badge-primary px-3 rounded-pill font-weight-normal">
-                            {props.data.total}
+                            &#8377; {props.data.total}
                         </div>
                     </div>
                 </div>

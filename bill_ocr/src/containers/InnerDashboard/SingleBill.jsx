@@ -36,15 +36,27 @@ export default function SingleBill(props) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>300</td>
-                                    </tr>
+                                    {data.bill_content.map((items, i) => (
+                                        <tr>
+                                            {Object.entries(items).map(
+                                                (item, value) => (
+                                                    <>
+                                                        <td>{item[0]}</td>
+                                                        <td>
+                                                            &#8377;{item[1] + 0}
+                                                        </td>
+                                                    </>
+                                                )
+                                            )}
+                                        </tr>
+                                    ))}
+
+                                    {console.log(data.bill_content)}
                                 </tbody>
                                 <thead>
                                     <tr>
                                         <th>TOTAL</th>
-                                        <th>{data.total}</th>
+                                        <th>&#8377; {data.total}</th>
                                     </tr>
                                 </thead>
                             </table>

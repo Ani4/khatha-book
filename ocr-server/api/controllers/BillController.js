@@ -1,12 +1,14 @@
 var mongoose = require("mongoose");
-
+const { ExtractionFromString } = require("../middlewares/OcrMiddleware");
 //models in use
 var Bill = mongoose.model("Bill");
 
 // create bill
 exports.create_bill = (req, res, next) => {
     let body = req.body;
-
+    let { finalProduct, total } = ExtractionFromString(body.bill_raw_data);
+    body.total = total;
+    body.bill_content = finalProduct;
     Bill.create(body, (err, bill) => {
         if (err) res.send(err);
         else res.json(bill);
@@ -15,7 +17,6 @@ exports.create_bill = (req, res, next) => {
 
 // get all bills
 exports.get_all_bill = (req, res, next) => {
-    console.log(req);
     Bill.find({}, (err, bill) => {
         if (err) res.send(err);
         else res.json(bill);
@@ -56,10 +57,3 @@ exports.get_bill = (req, res, next) => {
         else res.json(bill);
     });
 };
-
-// exports.img_process = (req, res, next) => {
-//     axios.get(`${baseUrl}Files/bill/${req.params.id}.jpg`).then((result) => {
-//         console.log(result.status);
-//         res.send(result.data);
-//     });
-// };
