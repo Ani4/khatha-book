@@ -4,8 +4,8 @@ import SideBar from "./SideBar";
 import { Link } from "react-router-dom";
 
 export default function Dashboard() {
-    const [width, setWidth] = React.useState(window.innerWidth);
-    const [height, setHeight] = React.useState(window.innerHeight);
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
     const updateWidthAndHeight = () => {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
@@ -71,14 +71,6 @@ export default function Dashboard() {
                                 </form>
                                 <ul className="nav navbar-nav flex-nowrap ml-auto">
                                     <li className="nav-item dropdown d-sm-none no-arrow">
-                                        <a
-                                            className="dropdown-toggle nav-link"
-                                            data-toggle="dropdown"
-                                            aria-expanded="false"
-                                            href="#"
-                                        >
-                                            <i className="fas fa-search" />
-                                        </a>
                                         <div
                                             className="dropdown-menu dropdown-menu-right p-3 animated--grow-in"
                                             role="menu"
@@ -123,44 +115,6 @@ export default function Dashboard() {
                                                     src="assets/img/avatars/avatar5.jpeg"
                                                 />
                                             </a>
-                                            <div
-                                                className="dropdown-menu shadow dropdown-menu-right animated--grow-in"
-                                                role="menu"
-                                            >
-                                                <a
-                                                    className="dropdown-item"
-                                                    role="presentation"
-                                                    href="#"
-                                                >
-                                                    <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
-                                                    &nbsp;Profile
-                                                </a>
-                                                <a
-                                                    className="dropdown-item"
-                                                    role="presentation"
-                                                    href="#"
-                                                >
-                                                    <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
-                                                    &nbsp;Settings
-                                                </a>
-                                                <a
-                                                    className="dropdown-item"
-                                                    role="presentation"
-                                                    href="#"
-                                                >
-                                                    <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
-                                                    &nbsp;Activity log
-                                                </a>
-                                                <div className="dropdown-divider" />
-                                                <a
-                                                    className="dropdown-item"
-                                                    role="presentation"
-                                                    href="#"
-                                                >
-                                                    <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
-                                                    &nbsp;Logout
-                                                </a>
-                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -177,22 +131,13 @@ export default function Dashboard() {
                                         <div className="float-left">
                                             <ul>
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="https://github.com/Ani4/Bill-OCR">
                                                         <i className="fa fa-github" />
                                                     </a>
                                                 </li>
+
                                                 <li>
-                                                    <a href="#">
-                                                        <i className="fa fa-twitter" />
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i className="fa fa-instagram" />
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
+                                                    <a href="https://www.linkedin.com/in/ani4/">
                                                         <i className="fa fa-linkedin" />
                                                     </a>
                                                 </li>
@@ -203,7 +148,8 @@ export default function Dashboard() {
                                         <div className="float-right">
                                             <span />
                                             <span>
-                                                Build during Major Project
+                                                Build during Major Project @
+                                                2016-2020
                                             </span>
                                         </div>
                                     </div>

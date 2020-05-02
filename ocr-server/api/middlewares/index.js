@@ -1,7 +1,7 @@
 const { ExtractionFromString } = require("./OcrMiddleware");
 
 console.log(
-  ExtractionFromString(`[T le1o)o)
+    ExtractionFromString(`
     mango - 3000
     de - 342
     dfasg - 234.23

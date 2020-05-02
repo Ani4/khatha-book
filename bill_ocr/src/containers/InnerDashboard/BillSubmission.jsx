@@ -52,6 +52,12 @@ export default function BillSubmission() {
                     headers: { "Content-Type": "multipart/form-data" },
                 }
             );
+            if (result.statusText === "OK") {
+                setBillNumber(null);
+                setBillName(null);
+                setPercentage(null);
+                setSentence(null);
+            }
             console.log(result);
         }
     };
@@ -124,7 +130,6 @@ export default function BillSubmission() {
                         >
                             <button
                                 class="btn btn-primary btn-lg d-none d-sm-inline-block "
-                                role="button"
                                 onClick={handleSubmit}
                                 disabled={percentage < 100 ? true : false}
                             >
@@ -192,7 +197,7 @@ export default function BillSubmission() {
                                             <img
                                                 id="imageResult"
                                                 src={filePath}
-                                                alt
+                                                alt=""
                                                 className="img-fluid rounded shadow-sm mx-auto d-block"
                                             />
                                         </div>
