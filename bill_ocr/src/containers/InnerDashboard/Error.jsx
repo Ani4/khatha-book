@@ -12,7 +12,7 @@ export default function Error() {
                 <p className="text-black-50 mb-0">
                     It looks like you lost somewhere...
                 </p>
-                <link to="/" />← Back to Dashboard
+                <Link to="/">← Back to Dashboard</Link>
             </div>
         </div>
     );

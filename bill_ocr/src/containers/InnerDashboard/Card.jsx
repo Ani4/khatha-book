@@ -13,7 +13,7 @@ export default function Card(props) {
             <div className="bg-white rounded shadow-sm">
                 <img
                     src={props.data.bill_img || "assets/img/billImg.png"}
-                    alt
+                    alt=""
                     className="img-fluid card-img-top"
                 />
                 <div className="p-4">

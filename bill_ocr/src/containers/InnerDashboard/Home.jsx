@@ -20,14 +20,14 @@ export default function Home() {
         <div className="container-fluid">
             <div className="d-sm-flex justify-content-between align-items-center mb-4">
                 <h3 className="text-dark mb-0">Dashboard</h3>
-                <a
+                <Link
                     className="btn btn-primary btn-sm d-none d-sm-inline-block"
                     role="button"
-                    href="#"
+                    to="/bill-submission"
                 >
                     <i className="fas fa-upload fa-sm text-white-50" />
                     &nbsp;Upload Bill
-                </a>
+                </Link>
             </div>
             <div className="row">
                 <div className="col-md-6 col-xl-3 mb-4">
