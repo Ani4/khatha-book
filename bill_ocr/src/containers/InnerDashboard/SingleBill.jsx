@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { baseUrl } from "../../config/config";
 import axios from "axios";
+
 export default function SingleBill(props) {
     console.log(props.match.params.id);
     const [data, setData] = useState(null);

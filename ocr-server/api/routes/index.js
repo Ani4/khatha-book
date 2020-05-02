@@ -9,6 +9,8 @@ const FilterMiddleware = require("../middlewares/FilterMiddleware");
 // Controllers
 var BillController = require("../controllers/BillController.js");
 
+// router.get("/img/:id", BillController.img_process);
+
 router.get("/all", BillController.get_all_bill);
 
 router.post("/:id", BillController.get_bill);

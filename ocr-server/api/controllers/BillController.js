@@ -1,6 +1,9 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const { baseUrl } = require("../../config/config");
+const axios = require("axios");
+
 //models in use
-var Bill = mongoose.model("Bill");
+const Bill = mongoose.model("Bill");
 
 // create bill
 exports.create_bill = (req, res, next) => {
@@ -53,3 +56,10 @@ exports.get_bill = (req, res, next) => {
         else res.json(bill);
     });
 };
+
+// exports.img_process = (req, res, next) => {
+//     axios.get(`${baseUrl}Files/bill/${req.params.id}.jpg`).then((result) => {
+//         console.log(result.status);
+//         res.send(result.data);
+//     });
+// };
