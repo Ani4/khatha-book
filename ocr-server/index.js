@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
-const multer = require("multer");
-const { createWorker } = require("tesseract.js");
 const cors = require("cors");
-const worker = createWorker();
 const mongoose = require("mongoose");
 const path = require("path");
 const port = process.env.PORT || 5000;
@@ -14,15 +11,15 @@ const morgan = require("morgan");
 exports.rootDirectory = __dirname;
 
 const corsOptions = {
-  origin: true,
-  optionsSuccessStatus: 204,
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "Access-Control-Allow-Methods",
-    "Access-Control-Request-Headers",
-  ],
-  credentials: true,
+    origin: true,
+    optionsSuccessStatus: 204,
+    allowedHeaders: [
+        "Content-Type",
+        "Authorization",
+        "Access-Control-Allow-Methods",
+        "Access-Control-Request-Headers",
+    ],
+    credentials: true,
 };
 
 // mongoose instance connection url connection
@@ -31,19 +28,19 @@ const config = require("./config/config");
 
 // connect to database
 mongoose
-  .connect(config.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log("Successfully connected to the database");
-  })
-  .catch((err) => {
-    console.log("Could not connect to the database. Exiting now...", err);
-    process.exit();
-  });
+    .connect(config.url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+    })
+    .then(() => {
+        console.log("Successfully connected to the database");
+    })
+    .catch((err) => {
+        console.log("Could not connect to the database. Exiting now...", err);
+        process.exit();
+    });
 
 // middleware
 app.use(cors(corsOptions));
@@ -63,10 +60,10 @@ app.use("/bill", routes);
 
 // home page not exist
 app.get("/", function (req, res, next) {
-  res.status(403).send("FORBIDDEN");
+    res.status(403).send("FORBIDDEN");
 });
 
 // Listening
 http.listen(port, function () {
-  console.log(" REST API server Started on " + port);
+    console.log(" REST API server Started on " + port);
 });

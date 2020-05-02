@@ -1,13 +1,12 @@
-const mongoose = require("mongoose");
-const { baseUrl } = require("../../config/config");
-const axios = require("axios");
+var mongoose = require("mongoose");
 
 //models in use
-const Bill = mongoose.model("Bill");
+var Bill = mongoose.model("Bill");
 
 // create bill
 exports.create_bill = (req, res, next) => {
     let body = req.body;
+
     Bill.create(body, (err, bill) => {
         if (err) res.send(err);
         else res.json(bill);
@@ -16,6 +15,7 @@ exports.create_bill = (req, res, next) => {
 
 // get all bills
 exports.get_all_bill = (req, res, next) => {
+    console.log(req);
     Bill.find({}, (err, bill) => {
         if (err) res.send(err);
         else res.json(bill);
