@@ -3,7 +3,7 @@ import React from "react";
 export default function Card(props) {
     return (
         <div
-            className="col-md-6 mb-4 col-lg-3"
+            className="col-md-4 col-sm-6 mb-4 col-lg-4"
             onClick={() => {
                 console.log(props.data);
                 props.history.push(`/gallery/bill/${props.data._id}`);
@@ -11,19 +11,12 @@ export default function Card(props) {
             style={{ pointer: "cursor" }}
         >
             <div className="bg-white rounded shadow-sm">
-                <div
-                    style={{
-                        height: "100%",
-                        width: "100%",
-                        overflow: "hidden",
-                    }}
-                >
-                    <img
-                        src={props.data.bill_img || "assets/img/billImg.png"}
-                        alt=""
-                        className="img-fluid card-img-top"
-                    />
-                </div>
+                <img
+                    src={props.data.bill_img || "assets/img/billImg.png"}
+                    alt=""
+                    className="img-fluid card-img-top"
+                    style={{ height: "30vh", objectFit: "cover" }}
+                />
                 <div className="p-4">
                     <h5>
                         <p className="text-dark">{props.data.bill_name}</p>
