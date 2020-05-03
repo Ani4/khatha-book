@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Routers from "./Routers";
 
-export default function LoginMain() {
+export default function LoginMain(props) {
     useEffect(() => {
         let body = document.getElementsByTagName("body");
         body[0].className = "bg-gradient-primary";
@@ -26,7 +26,7 @@ export default function LoginMain() {
                                 />
                             </div>
                             <div className="col-lg-7">
-                                <Routers />
+                                <Routers {...props} />
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ export default function LoginMain() {
                     </h4>
 
                     <p style={{ margin: 0 }}>
-                        <strong>Amit</strong> : <em>01015602716</em>
+                        <strong>Amit Kumar Singh</strong> : <em>01015602716</em>
                     </p>
                     <p style={{ margin: 0 }}>
                         <strong>Aniket Kumar Sharma</strong> :

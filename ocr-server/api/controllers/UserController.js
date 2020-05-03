@@ -1,22 +1,30 @@
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+const { secretKey } = require("../../config/config");
 
 exports.create_user = (req, res, next) => {
-    const { email, password } = req.body;
-    const user = new User({ email, password });
+    const { email, password, firstName, lastName } = req.body;
+    const user = new User({
+        email,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+    });
     user.save(function (err) {
         if (err) {
             res.status(500).send(
                 "Error registering new user please try again."
             );
         } else {
-            res.status(200).send("Welcome to the club!");
+            res.status(200).send("user Registered");
         }
     });
 };
 
 exports.authenticate = (req, res, next) => {
     const { email, password } = req.body;
+
     User.findOne({ email }, function (err, user) {
         if (err) {
             console.error(err);
@@ -40,7 +48,7 @@ exports.authenticate = (req, res, next) => {
                 } else {
                     // Issue token
                     const payload = { email };
-                    const token = jwt.sign(payload, secret, {
+                    const token = jwt.sign(payload, secretKey, {
                         expiresIn: "1h",
                     });
                     res.cookie("token", token, { httpOnly: true }).sendStatus(
@@ -50,4 +58,8 @@ exports.authenticate = (req, res, next) => {
             });
         }
     });
+};
+
+exports.logout = (req, res, next) => {
+    res.clearCookie("token", { httpOnly: true }).sendStatus(200);
 };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { baseUrl } from "../../config/config";
 export default function Create() {
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
@@ -10,6 +12,21 @@ export default function Create() {
     //     Submission handle Function
     const handleSubmit = () => {
         console.log({ email, password });
+        if (
+            firstName &&
+            lastName &&
+            password &&
+            email &&
+            password === repeatPassword
+        )
+            axios
+                .post(baseUrl + "user/create", {
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                })
+                .then((result) => console.log({ success: result.data }));
     };
 
     //     return

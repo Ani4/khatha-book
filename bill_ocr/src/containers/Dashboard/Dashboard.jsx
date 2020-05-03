@@ -3,7 +3,7 @@ import Routers from "../Routes/Routers";
 import SideBar from "./SideBar";
 import { Link } from "react-router-dom";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
     const updateWidthAndHeight = () => {
@@ -113,6 +113,9 @@ export default function Dashboard() {
                                                 <img
                                                     className="border rounded-circle img-profile"
                                                     src="assets/img/avatars/avatar5.jpeg"
+                                                    onClick={() =>
+                                                        props.handleLogout()
+                                                    }
                                                 />
                                             </a>
                                         </div>

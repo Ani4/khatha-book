@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { api } from "../../config/api";
 import { baseUrl } from "../../config/config";
 import Tesseract from "tesseract.js";
 
@@ -32,7 +33,7 @@ export default function BillSubmission() {
         let id = null;
         // form submission without img
         if (billName && billNumber && sentence) {
-            const result = await axios.post(baseUrl + "create", {
+            const result = await api.post(baseUrl + "create", {
                 bill_no: billNumber,
                 bill_name: billName,
                 bill_raw_data: sentence,
@@ -45,7 +46,7 @@ export default function BillSubmission() {
         if (id) {
             let formData = new FormData();
             formData.append("file", file);
-            const result = await axios.post(
+            const result = await api.post(
                 baseUrl + `upload/bill/${id}`,
                 formData,
                 {

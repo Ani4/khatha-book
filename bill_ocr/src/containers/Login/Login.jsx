@@ -1,12 +1,27 @@
-import React, { useState, useEfect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { baseUrl } from "../../config/config";
 import { Link } from "react-router-dom";
-export default function Login() {
+export default function Login(props) {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
     //     Submission handle Function
     const handleSubmit = () => {
         console.log({ email, password });
+        if (email && password)
+            axios
+                .post(
+                    baseUrl + "user/authenticate",
+                    {
+                        email,
+                        password,
+                    },
+                    { withCredentials: true }
+                )
+                .then(({ data }) => {
+                    if (data === "OK") props.setLoginCheck(true);
+                });
     };
 
     //     Markup return
@@ -48,6 +63,15 @@ export default function Login() {
                                 className="form-check-input custom-control-input"
                                 type="checkbox"
                                 id="formCheck-1"
+                                defaultChecked={localStorage.getItem(
+                                    "remember_me_for_bill_ocr"
+                                )}
+                                onChange={(e) =>
+                                    localStorage.setItem(
+                                        "remember_me_for_bill_ocr",
+                                        e.target.checked
+                                    )
+                                }
                             />
                             <label
                                 className="form-check-label custom-control-label"

@@ -18,12 +18,9 @@ router.get("/checkToken", withAuth, function (req, res) {
 
 router.post("/user/create", FilterMiddleware, UserController.create_user);
 
-router.post(
-    "/user/authenticate",
-    withAuth,
-    FilterMiddleware,
-    UserController.authenticate
-);
+router.get("/user/logout", withAuth, UserController.logout);
+
+router.post("/user/authenticate", UserController.authenticate);
 
 router.get("/all", BillController.get_all_bill);
 
@@ -33,6 +30,7 @@ router.post("/:id", BillController.get_bill);
 
 router.post(
     "/upload/:moduleName/:elementId",
+    withAuth,
     multer().any(),
     FileMiddleware.upload_file
 );
