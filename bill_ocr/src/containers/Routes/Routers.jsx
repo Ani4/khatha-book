@@ -4,12 +4,14 @@ import Error from "../InnerDashboard/Error";
 import Home from "../InnerDashboard/Home";
 import BillSubmission from "../InnerDashboard/BillSubmission";
 import SingleBill from "../InnerDashboard/SingleBill";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+
 export default function Routers() {
     return (
         <Switch>
             <Route
                 path="/gallery/bill/:id"
+                exact
                 render={(propsHistory) => <SingleBill {...propsHistory} />}
             />
 
@@ -19,15 +21,17 @@ export default function Routers() {
                 render={(propsHistory) => <Gallery {...propsHistory} />}
             />
 
-            <Route path="/bill-submission">
+            <Route path="/bill-submission" exact>
                 <BillSubmission />
             </Route>
             <Route path="/" exact>
                 <Home />
             </Route>
-            <Route>
+            <Redirect to="/" />
+            {/* FIXME: Hide  */}
+            {/* <Route>
                 <Error />
-            </Route>
+            </Route> */}
         </Switch>
     );
 }

@@ -5,11 +5,25 @@ const multer = require("multer");
 // Middleware
 const FileMiddleware = require("../middlewares/FileMiddleware");
 const FilterMiddleware = require("../middlewares/FilterMiddleware");
+const withAuth = require("../middlewares/AuthMiddleware");
 
 // Controllers
-var BillController = require("../controllers/BillController.js");
+var BillController = require("../controllers/BillController");
+var UserController = require("../controllers/UserController");
 
 // router.get("/img/:id", BillController.img_process);
+router.get("/checkToken", withAuth, function (req, res) {
+    res.sendStatus(200);
+});
+
+router.post("/user/create", FilterMiddleware, UserController.create_user);
+
+router.post(
+    "/user/authenticate",
+    withAuth,
+    FilterMiddleware,
+    UserController.authenticate
+);
 
 router.get("/all", BillController.get_all_bill);
 
