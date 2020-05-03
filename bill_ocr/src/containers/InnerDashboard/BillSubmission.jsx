@@ -52,12 +52,15 @@ export default function BillSubmission() {
                     headers: { "Content-Type": "multipart/form-data" },
                 }
             );
+            console.log(result.statusText);
             if (result.statusText === "OK") {
-                setBillNumber(null);
-                setBillName(null);
-                setPercentage(null);
-                setSentence(null);
+                setBillNumber("");
+                setBillName("");
+                setPercentage(0);
+                setSentence("");
+                setFilePath("");
             }
+
             console.log(result);
         }
     };
@@ -124,6 +127,23 @@ export default function BillSubmission() {
                                 onChange={(e) => setBillName(e.target.value)}
                             />
                         </div>
+                        {sentence && sentence.length > 0 ? (
+                            <div className="form-group has-feedback">
+                                <p className="text-primary m-0 font-weight-bold">
+                                    Raw Data&nbsp;
+                                </p>
+                                <p
+                                    className="form-control"
+                                    style={{
+                                        height: "auto",
+                                        backgroundColor: "lightgrey",
+                                        cursor: "not-allowed",
+                                    }}
+                                >
+                                    {sentence}
+                                </p>
+                            </div>
+                        ) : null}
                         <div
                             className="row justify-content-center"
                             style={{ paddingTop: 20 }}
@@ -166,7 +186,12 @@ export default function BillSubmission() {
                                                         TesseractProcess(
                                                             e.target.files[0]
                                                         );
-                                                        console.log(filePath);
+                                                        console.log(
+                                                            URL.createObjectURL(
+                                                                e.target
+                                                                    .files[0]
+                                                            )
+                                                        );
                                                     }
                                                 }}
                                                 className="form-control border-0"
