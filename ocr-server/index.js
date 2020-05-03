@@ -7,6 +7,7 @@ const port = process.env.PORT || 5000;
 const http = require("http").createServer(app);
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 exports.rootDirectory = __dirname;
 
@@ -44,6 +45,7 @@ mongoose
 
 // middleware
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.options("*", cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -53,6 +55,7 @@ app.use(morgan("dev"));
 console.log(path.resolve("./ocr-server/Files"));
 //   model for database
 const Bill = require("./api/models/Bill");
+const User = require("./api/models/User");
 
 // routes
 const routes = require("./api/routes");

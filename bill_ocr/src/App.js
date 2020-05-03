@@ -1,13 +1,10 @@
-import React from "react";
-
-import { BrowserRouter as Router } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./containers/Dashboard/Dashboard";
+import LoginMain from "./containers/Login/LoginMain";
 
 export default function App() {
-    return (
-        <Router>
-            <Dashboard />
-        </Router>
-    );
+    const [loginCheck, setLoginCheck] = useState(false);
+
+    return <Router>{loginCheck ? <Dashboard /> : <LoginMain />}</Router>;
 }
