@@ -125,7 +125,7 @@ export default function BillSubmission() {
                             />
                         </div>
                         <div
-                            className="row justify-content-md-center"
+                            className="row justify-content-center"
                             style={{ paddingTop: 20 }}
                         >
                             <button
@@ -206,6 +206,19 @@ export default function BillSubmission() {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div
+                    className="row justify-content-center dis-sm-none"
+                    style={{ paddingTop: 20 }}
+                >
+                    <button
+                        class="btn btn-primary btn-lg "
+                        onClick={handleSubmit}
+                        disabled={percentage < 100 ? true : false}
+                    >
+                        <i class="fas fa-upload fa-sm text-white-50"></i>
+                        &nbsp;Submit
+                    </button>
                 </div>
                 <hr />
             </div>

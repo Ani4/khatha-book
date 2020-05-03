@@ -73,6 +73,18 @@ export default function SingleBill(props) {
                                     />
                                 </div>
                             </div>
+                            <div
+                                className="container-fluid"
+                                style={{ marginTop: 30 }}
+                            >
+                                <h3
+                                    className="text-dark "
+                                    style={{ marginBottom: 0 }}
+                                >
+                                    Raw Data
+                                </h3>
+                                <p>{data.bill_raw_data}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
