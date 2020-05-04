@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Routers from "../Routes/Routers";
 import SideBar from "./SideBar";
+import Profile from "./Profile";
 
 export default function Dashboard(props) {
     const [width, setWidth] = useState(window.innerWidth);
@@ -103,28 +104,13 @@ export default function Dashboard(props) {
                                         role="presentation"
                                     >
                                         <div className="nav-item dropdown no-arrow">
-                                            <div
-                                                className="dropdown-toggle nav-link"
-                                                data-toggle="dropdown"
-                                            >
-                                                <span className="d-none d-lg-inline mr-2 text-gray-600 small">
-                                                    hi!{" "}
-                                                    {user.first_name +
-                                                        " " +
-                                                        user.last_name}
-                                                </span>
-                                                <img
-                                                    className="border rounded-circle img-profile"
-                                                    src="assets/img/avatars/avatar5.jpeg"
-                                                    onClick={() =>
-                                                        props.handleLogout()
-                                                    }
-                                                    alt=""
-                                                    style={{
-                                                        cursor: "pointer",
-                                                    }}
-                                                />
-                                            </div>
+                                            {/* TODO:  */}
+                                            <Profile
+                                                user={user}
+                                                handleLogout={
+                                                    props.handleLogout
+                                                }
+                                            />
                                         </div>
                                     </li>
                                 </ul>
