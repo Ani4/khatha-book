@@ -40,7 +40,12 @@ export default function App() {
     }, []);
 
     // return markup
-    if (loading) return <LoadingScreen type={"bars"} color={"#4e73df"} />;
+    if (loading)
+        return (
+            <div style={{ height: "100vh", width: "100vw" }}>
+                <LoadingScreen type={"bars"} color={"#4e73df"} />
+            </div>
+        );
     return (
         <Router>
             {loginCheck ? (
