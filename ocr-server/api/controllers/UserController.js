@@ -51,9 +51,12 @@ exports.authenticate = (req, res, next) => {
                     const token = jwt.sign(payload, secretKey, {
                         expiresIn: "1h",
                     });
-                    res.cookie("token", token, { httpOnly: true }).sendStatus(
-                        200
-                    );
+                    res.cookie("token", token, { httpOnly: true }).json({
+                        email: user.email,
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        _id: user._id,
+                    });
                 }
             });
         }

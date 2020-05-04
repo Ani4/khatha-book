@@ -9,9 +9,16 @@ import LoadingScreen from "./containers/Dashboard/LoadingScreen";
 export default function App() {
     const [loginCheck, setLoginCheck] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    // logout
     const handleLogout = () => {
-        api.get(baseUrl + "user/logout").then(() => setLoginCheck(false));
+        api.get(baseUrl + "user/logout").then(() => {
+            setLoginCheck(false);
+            localStorage.removeItem("user_for_bill_ocr");
+        });
     };
+
+    // auto login
     const autoLogin = () => {
         let rememberMe = localStorage.getItem("remember_me_for_bill_ocr");
         console.log(Boolean(rememberMe));
@@ -26,9 +33,13 @@ export default function App() {
                 .catch((err) => setLoading(false));
         else setLoading(false);
     };
+
+    // run onces when the component load
     useEffect(() => {
         autoLogin();
     }, []);
+
+    // return markup
     if (loading) return <LoadingScreen type={"bars"} color={"#4e73df"} />;
     return (
         <Router>

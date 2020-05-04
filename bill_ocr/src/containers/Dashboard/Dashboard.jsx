@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 
 export default function Dashboard(props) {
     const [width, setWidth] = useState(window.innerWidth);
+    const [user, setUser] = useState(
+        JSON.parse(localStorage.getItem("user_for_bill_ocr"))
+    );
     const [height, setHeight] = useState(window.innerHeight);
     const updateWidthAndHeight = () => {
         setWidth(window.innerWidth);
@@ -101,14 +104,15 @@ export default function Dashboard(props) {
                                         role="presentation"
                                     >
                                         <div className="nav-item dropdown no-arrow">
-                                            <a
+                                            <div
                                                 className="dropdown-toggle nav-link"
                                                 data-toggle="dropdown"
-                                                aria-expanded="false"
-                                                href="#"
                                             >
                                                 <span className="d-none d-lg-inline mr-2 text-gray-600 small">
-                                                    User Name
+                                                    hi!{" "}
+                                                    {user.first_name +
+                                                        " " +
+                                                        user.last_name}
                                                 </span>
                                                 <img
                                                     className="border rounded-circle img-profile"
@@ -116,8 +120,11 @@ export default function Dashboard(props) {
                                                     onClick={() =>
                                                         props.handleLogout()
                                                     }
+                                                    style={{
+                                                        cursor: "pointer",
+                                                    }}
                                                 />
-                                            </a>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>

@@ -20,7 +20,12 @@ export default function Login(props) {
                     { withCredentials: true }
                 )
                 .then(({ data }) => {
-                    if (data === "OK") props.setLoginCheck(true);
+                    console.log(JSON.stringify({ data }));
+                    localStorage.setItem(
+                        "user_for_bill_ocr",
+                        JSON.stringify(data)
+                    );
+                    props.setLoginCheck(true);
                 });
     };
 
