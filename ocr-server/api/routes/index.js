@@ -18,29 +18,36 @@ router.get("/checkToken", withAuth, function (req, res) {
 
 router.post("/user/create", FilterMiddleware, UserController.create_user);
 
-router.post(
-    "/user/authenticate",
-    withAuth,
-    FilterMiddleware,
-    UserController.authenticate
-);
+router.get("/user/logout", withAuth, UserController.logout);
 
-router.get("/all", BillController.get_all_bill);
+router.post("/user/authenticate", UserController.authenticate);
 
-router.post("/create", BillController.create_bill);
+router.post("/all", withAuth, BillController.get_all_bill);
 
-router.post("/:id", BillController.get_bill);
+router.post("/create", withAuth, BillController.create_bill);
+
+router.post("/:id", withAuth, BillController.get_bill);
 
 router.post(
     "/upload/:moduleName/:elementId",
+    withAuth,
     multer().any(),
     FileMiddleware.upload_file
 );
 
-router.get("/total", FilterMiddleware, BillController.total);
+router.get(
+    "/totals/:customer_id",
+    withAuth,
+    FilterMiddleware,
+    BillController.total
+);
 
-router.get("/total/:id", BillController.total);
+router.get("/total/:id", withAuth, BillController.total);
 
-router.get("/number_of_bills", BillController.number_of_bills);
+router.get(
+    "/number_of_bills/:customer_id",
+    withAuth,
+    BillController.number_of_bills
+);
 
 module.exports = router;

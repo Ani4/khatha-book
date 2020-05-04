@@ -1,12 +1,57 @@
-import React, { useState, useEfect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { baseUrl } from "../../config/config";
 import { Link } from "react-router-dom";
-export default function Login() {
+import { useToasts } from "react-toast-notifications";
+
+export default function Login(props) {
+    // toaster
+    const { addToast } = useToasts();
+    // state
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
     //     Submission handle Function
     const handleSubmit = () => {
-        console.log({ email, password });
+        if (email && password) {
+            addToast("Authenticating", {
+                appearance: "info",
+                autoDismiss: true,
+            });
+            axios
+                .post(
+                    baseUrl + "user/authenticate",
+                    {
+                        email,
+                        password,
+                    },
+                    { withCredentials: true }
+                )
+                .then(({ data }) => {
+                    localStorage.setItem(
+                        "user_for_bill_ocr",
+                        JSON.stringify(data)
+                    );
+                    addToast("Login Successfully", {
+                        appearance: "success",
+                        autoDismiss: true,
+                    });
+                    props.setLoginCheck(true);
+                })
+                .catch((err) =>
+                    addToast(
+                        "Your Credentials are wrong, pls come up with correct one",
+                        {
+                            appearance: "error",
+                            autoDismiss: true,
+                        }
+                    )
+                );
+        } else
+            addToast("Please enter Email & Password", {
+                appearance: "warning",
+                autoDismiss: true,
+            });
     };
 
     //     Markup return
@@ -48,6 +93,15 @@ export default function Login() {
                                 className="form-check-input custom-control-input"
                                 type="checkbox"
                                 id="formCheck-1"
+                                defaultChecked={localStorage.getItem(
+                                    "remember_me_for_bill_ocr"
+                                )}
+                                onChange={(e) =>
+                                    localStorage.setItem(
+                                        "remember_me_for_bill_ocr",
+                                        e.target.checked
+                                    )
+                                }
                             />
                             <label
                                 className="form-check-label custom-control-label"

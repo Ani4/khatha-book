@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Routers from "../Routes/Routers";
 import SideBar from "./SideBar";
-import { Link } from "react-router-dom";
+import Profile from "./Profile";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
     const [width, setWidth] = useState(window.innerWidth);
-    const [height, setHeight] = useState(window.innerHeight);
+    const [user] = useState(
+        JSON.parse(localStorage.getItem("user_for_bill_ocr"))
+    );
+    const [, setHeight] = useState(window.innerHeight);
     const updateWidthAndHeight = () => {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
@@ -101,20 +104,13 @@ export default function Dashboard() {
                                         role="presentation"
                                     >
                                         <div className="nav-item dropdown no-arrow">
-                                            <a
-                                                className="dropdown-toggle nav-link"
-                                                data-toggle="dropdown"
-                                                aria-expanded="false"
-                                                href="#"
-                                            >
-                                                <span className="d-none d-lg-inline mr-2 text-gray-600 small">
-                                                    User Name
-                                                </span>
-                                                <img
-                                                    className="border rounded-circle img-profile"
-                                                    src="assets/img/avatars/avatar5.jpeg"
-                                                />
-                                            </a>
+                                            {/* TODO:  */}
+                                            <Profile
+                                                user={user}
+                                                handleLogout={
+                                                    props.handleLogout
+                                                }
+                                            />
                                         </div>
                                     </li>
                                 </ul>
@@ -124,7 +120,10 @@ export default function Dashboard() {
                         <Routers />
                     </div>
                     <footer className="sticky-footer pt-0 pb-0">
-                        <div className="d-flex flex-row align-items-center index-top-info">
+                        <div
+                            className="d-flex flex-row align-items-center index-top-info"
+                            style={{ display: "block" }}
+                        >
                             <div className="container">
                                 <div className="row">
                                     <div className="col social-links">
@@ -159,14 +158,14 @@ export default function Dashboard() {
                     </footer>
                 </div>
                 {/* FIXME: button to top */}
-                <Link
+                <button
                     onClick={() => {
                         window.scroll(0, 0);
                     }}
                     className="border rounded d-inline scroll-to-top"
                 >
                     <i className="fas fa-angle-up" />
-                </Link>
+                </button>
             </div>
         </>
     );
