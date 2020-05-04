@@ -65,7 +65,7 @@ export default function LoginMain(props) {
                         <strong>Anuj Kumar</strong> : <em>01415602716</em>
                     </p>
                     <p style={{ margin: 0 }}>
-                        <strong>Jagdish Mishra</strong> : <em>03015602716</em>
+                        <strong>Jagdish Chandra</strong> : <em>03015602716</em>
                     </p>
                 </div>
             </div>
