@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Routers from "../Routes/Routers";
 import SideBar from "./SideBar";
-import { Link } from "react-router-dom";
 
 export default function Dashboard(props) {
     const [width, setWidth] = useState(window.innerWidth);
-    const [user, setUser] = useState(
+    const [user] = useState(
         JSON.parse(localStorage.getItem("user_for_bill_ocr"))
     );
-    const [height, setHeight] = useState(window.innerHeight);
+    const [, setHeight] = useState(window.innerHeight);
     const updateWidthAndHeight = () => {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
@@ -120,6 +119,7 @@ export default function Dashboard(props) {
                                                     onClick={() =>
                                                         props.handleLogout()
                                                     }
+                                                    alt=""
                                                     style={{
                                                         cursor: "pointer",
                                                     }}
@@ -134,7 +134,10 @@ export default function Dashboard(props) {
                         <Routers />
                     </div>
                     <footer className="sticky-footer pt-0 pb-0">
-                        <div className="d-flex flex-row align-items-center index-top-info">
+                        <div
+                            className="d-flex flex-row align-items-center index-top-info"
+                            style={{ display: "block" }}
+                        >
                             <div className="container">
                                 <div className="row">
                                     <div className="col social-links">
@@ -169,14 +172,14 @@ export default function Dashboard(props) {
                     </footer>
                 </div>
                 {/* FIXME: button to top */}
-                <Link
+                <button
                     onClick={() => {
                         window.scroll(0, 0);
                     }}
                     className="border rounded d-inline scroll-to-top"
                 >
                     <i className="fas fa-angle-up" />
-                </Link>
+                </button>
             </div>
         </>
     );

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { api } from "./config/api";
 import { baseUrl } from "./config/config";
 import Dashboard from "./containers/Dashboard/Dashboard";
 import LoginMain from "./containers/Login/LoginMain";
 import LoadingScreen from "./containers/Dashboard/LoadingScreen";
+import { useToasts } from "react-toast-notifications";
 
 export default function App() {
+    // toaster
+    const { addToast } = useToasts();
+
+    // state
     const [loginCheck, setLoginCheck] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -16,12 +21,16 @@ export default function App() {
             setLoginCheck(false);
             localStorage.removeItem("user_for_bill_ocr");
         });
+        addToast("Logout successfully", {
+            appearance: "success",
+            autoDismiss: true,
+        });
     };
 
     // auto login
     const autoLogin = () => {
         let rememberMe = localStorage.getItem("remember_me_for_bill_ocr");
-        console.log(Boolean(rememberMe));
+
         if (Boolean(rememberMe))
             api.get(baseUrl + "checkToken")
                 .then(({ data }) => {
@@ -30,6 +39,12 @@ export default function App() {
                         setLoading(false);
                     } else setLoading(false);
                 })
+                .then(() =>
+                    addToast("Login successfully with old credentials", {
+                        appearance: "success",
+                        autoDismiss: true,
+                    })
+                )
                 .catch((err) => setLoading(false));
         else setLoading(false);
     };

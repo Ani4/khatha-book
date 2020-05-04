@@ -17,7 +17,7 @@ exports.create_bill = (req, res, next) => {
 
 // get all bills
 exports.get_all_bill = (req, res, next) => {
-    Bill.find({}, (err, bill) => {
+    Bill.find(req.body, (err, bill) => {
         if (err) res.send(err);
         else res.json(bill);
     });
@@ -32,7 +32,7 @@ exports.total = (req, res, next) => {
         });
     // getting total of every bill
     else
-        Bill.find(req.body, (err, bill) => {
+        Bill.find({ customer_id: req.params.customer_id }, (err, bill) => {
             if (err) res.send(err);
             else
                 res.json(
@@ -45,7 +45,7 @@ exports.total = (req, res, next) => {
 };
 
 exports.number_of_bills = (req, res, next) => {
-    Bill.find({}, (err, bill) => {
+    Bill.find({ customer_id: req.params.customer_id }, (err, bill) => {
         if (err) res.send(err);
         else res.json(bill.length);
     });

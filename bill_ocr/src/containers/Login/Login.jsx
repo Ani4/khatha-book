@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../../config/config";
 import { Link } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
+
 export default function Login(props) {
+    // toaster
+    const { addToast } = useToasts();
+    // state
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
     //     Submission handle Function
     const handleSubmit = () => {
-        console.log({ email, password });
-        if (email && password)
+        if (email && password) {
+            addToast("Authenticating", {
+                appearance: "info",
+                autoDismiss: true,
+            });
             axios
                 .post(
                     baseUrl + "user/authenticate",
@@ -20,13 +28,30 @@ export default function Login(props) {
                     { withCredentials: true }
                 )
                 .then(({ data }) => {
-                    console.log(JSON.stringify({ data }));
                     localStorage.setItem(
                         "user_for_bill_ocr",
                         JSON.stringify(data)
                     );
+                    addToast("Login Successfully", {
+                        appearance: "success",
+                        autoDismiss: true,
+                    });
                     props.setLoginCheck(true);
-                });
+                })
+                .catch((err) =>
+                    addToast(
+                        "Your Credentials are wrong, pls come up with correct one",
+                        {
+                            appearance: "error",
+                            autoDismiss: true,
+                        }
+                    )
+                );
+        } else
+            addToast("Please enter Email & Password", {
+                appearance: "warning",
+                autoDismiss: true,
+            });
     };
 
     //     Markup return

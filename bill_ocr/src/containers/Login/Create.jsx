@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../config/config";
+import { useToasts } from "react-toast-notifications";
+
 export default function Create() {
+    //    toaster
+    const { addToast } = useToasts();
+    //    history
+    const history = useHistory();
+    //    state
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
     const [email, setEmail] = useState(null);
@@ -18,7 +25,11 @@ export default function Create() {
             password &&
             email &&
             password === repeatPassword
-        )
+        ) {
+            addToast("Creating Account", {
+                appearance: "info",
+                autoDismiss: true,
+            });
             axios
                 .post(baseUrl + "user/create", {
                     email,
@@ -26,7 +37,23 @@ export default function Create() {
                     firstName,
                     lastName,
                 })
-                .then((result) => console.log({ success: result.data }));
+                .then((result) =>
+                    addToast("Account Created ", {
+                        appearance: "success",
+                        autoDismiss: true,
+                    })
+                )
+                .then(() => history.replace("login"));
+        } else if (password === repeatPassword)
+            addToast("Please enter each and every field", {
+                appearance: "error",
+                autoDismiss: true,
+            });
+        else
+            addToast("Password doesn't match ", {
+                appearance: "error",
+                autoDismiss: true,
+            });
     };
 
     //     return

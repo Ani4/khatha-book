@@ -1,4 +1,5 @@
 import React from "react";
+import LoadingScreen from "../Dashboard/LoadingScreen";
 
 export default function Loading() {
     return (
@@ -7,24 +8,11 @@ export default function Loading() {
                 style={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItem: "center",
+                    alignItems: "center",
                     height: "100%",
                 }}
             >
-                <div
-                    className="load-wrapp"
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItem: "center",
-                    }}
-                >
-                    <div className="load-1">
-                        <div className="line" />
-                        <div className="line" />
-                        <div className="line" />
-                    </div>
-                </div>
+                <LoadingScreen />
             </div>
         </>
     );

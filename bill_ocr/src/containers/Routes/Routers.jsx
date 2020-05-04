@@ -1,6 +1,5 @@
 import React from "react";
 import Gallery from "../InnerDashboard/Gallery";
-import Error from "../InnerDashboard/Error";
 import Home from "../InnerDashboard/Home";
 import BillSubmission from "../InnerDashboard/BillSubmission";
 import SingleBill from "../InnerDashboard/SingleBill";

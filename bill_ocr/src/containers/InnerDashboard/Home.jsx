@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { api } from "../../config/api";
 import { baseUrl } from "../../config/config";
 
 export default function Home() {
     const [total, setTotal] = useState(0);
     const [numberOfBills, setNumberOfBills] = useState(0);
+    const [userID] = useState(
+        JSON.parse(localStorage.getItem("user_for_bill_ocr"))._id
+    );
     useEffect(() => {
-        axios.get(baseUrl + "total").then(({ data }) => {
-            console.log(data);
+        api.get(baseUrl + `totals/${userID}`).then(({ data }) => {
             setTotal(data);
         });
-        axios.get(baseUrl + "number_of_bills").then(({ data }) => {
-            console.log(data);
+        api.get(baseUrl + `number_of_bills/${userID}`).then(({ data }) => {
             setNumberOfBills(data);
         });
-    }, []);
+    }, [userID]);
     return (
         <div className="container-fluid">
             <div className="d-sm-flex justify-content-between align-items-center mb-4">
