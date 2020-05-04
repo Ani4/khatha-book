@@ -4,7 +4,7 @@ import Dashboard from "./containers/Dashboard/Dashboard";
 import LoginMain from "./containers/Login/LoginMain";
 
 export default function App() {
-    const [loginCheck, setLoginCheck] = useState(false);
+    const [loginCheck, setLoginCheck] = useState(true);
 
     return <Router>{loginCheck ? <Dashboard /> : <LoginMain />}</Router>;
 }
