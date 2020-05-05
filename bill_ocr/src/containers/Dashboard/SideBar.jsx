@@ -11,10 +11,10 @@ export default function SideBar() {
                     to="/"
                 >
                     <div className="sidebar-brand-icon rotate-n-15">
-                        <i className="fas fa-money-check-alt" />
+                        <i className="fas fa-book" />
                     </div>
                     <div className="sidebar-brand-text mx-3">
-                        <span>BILL Manager</span>
+                        <span>Kharcha Book</span>
                     </div>
                 </Link>
                 <hr className="sidebar-divider my-0" />
