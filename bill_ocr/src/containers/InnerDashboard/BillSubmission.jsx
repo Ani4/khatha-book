@@ -31,12 +31,12 @@ export default function BillSubmission() {
         Tesseract.recognize(file, "eng", {
             logger: (m) => {
                 let n = m.progress * 100;
-
+                console.log(m);
                 updateToast(toaster_id, {
                     content: `${m.status} ${n}`,
                     appearance: "info",
                     autoDismiss: true,
-                    autoDismissTimeout: 500,
+                    autoDismissTimeout: 2000,
                 });
                 if (m.status === "recognizing text")
                     setPercentage(n.toFixed(2));
@@ -200,11 +200,14 @@ export default function BillSubmission() {
                                                 type="file"
                                                 onChange={(e) => {
                                                     if (e.target.files[0]) {
-                                                        console.log(
-                                                            e.target.files[0]
-                                                        );
                                                         setFile(
                                                             e.target.files[0]
+                                                        );
+                                                        console.log(
+                                                            URL.createObjectURL(
+                                                                e.target
+                                                                    .files[0]
+                                                            )
                                                         );
                                                         setFilePath(
                                                             URL.createObjectURL(
@@ -214,12 +217,6 @@ export default function BillSubmission() {
                                                         );
                                                         TesseractProcess(
                                                             e.target.files[0]
-                                                        );
-                                                        console.log(
-                                                            URL.createObjectURL(
-                                                                e.target
-                                                                    .files[0]
-                                                            )
                                                         );
                                                     }
                                                 }}

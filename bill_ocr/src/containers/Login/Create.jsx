@@ -15,10 +15,10 @@ export default function Create() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [repeatPassword, setRepeatPassword] = useState(null);
+    const [shopCheck, setShopCheck] = useState(false);
 
     //     Submission handle Function
     const handleSubmit = () => {
-        console.log({ email, password });
         if (
             firstName &&
             lastName &&
@@ -36,13 +36,15 @@ export default function Create() {
                     password,
                     firstName,
                     lastName,
+                    user_type: shopCheck ? "SHOPKEEPER" : "CUSTOMER",
                 })
-                .then((result) =>
+                .then((result) => {
+                    console.log(result);
                     addToast("Account Created ", {
                         appearance: "success",
                         autoDismiss: true,
-                    })
-                )
+                    });
+                })
                 .then(() => history.replace("login"));
         } else if (password === repeatPassword)
             addToast("Please enter each and every field", {
@@ -128,6 +130,23 @@ export default function Create() {
                             onChange={(e) => setRepeatPassword(e.target.value)}
                             required
                         />
+                    </div>
+                </div>
+                <div className="custom-control custom-checkbox small mb-3">
+                    <div className="form-check">
+                        <input
+                            className="form-check-input custom-control-input"
+                            type="checkbox"
+                            id="formCheck-1"
+                            value={shopCheck}
+                            onChange={(e) => setShopCheck(e.target.checked)}
+                        />
+                        <label
+                            className="form-check-label custom-control-label"
+                            htmlFor="formCheck-1"
+                        >
+                            Shopkeeper(only for shopkeeper owner)
+                        </label>
                     </div>
                 </div>
                 <button

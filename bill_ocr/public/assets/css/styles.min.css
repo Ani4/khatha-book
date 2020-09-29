@@ -209,3 +209,8 @@ html {
 .form-control-feedback {
     padding-top: 10px;
 }
+
+.grid {
+    display: flex;
+    width: inherit;
+}

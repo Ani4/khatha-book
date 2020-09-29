@@ -22,6 +22,8 @@ router.get("/user/logout", withAuth, UserController.logout);
 
 router.post("/user/authenticate", UserController.authenticate);
 
+router.put("/user/update/:id", UserController.user_update);
+
 router.post("/all", withAuth, BillController.get_all_bill);
 
 router.post("/create", withAuth, BillController.create_bill);

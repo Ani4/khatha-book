@@ -4,6 +4,7 @@ import Home from "../InnerDashboard/Home";
 import BillSubmission from "../InnerDashboard/BillSubmission";
 import SingleBill from "../InnerDashboard/SingleBill";
 import { Switch, Route, Redirect } from "react-router-dom";
+import UserDetails from "../InnerDashboard/UserDetails";
 
 export default function Routers() {
     return (
@@ -12,6 +13,11 @@ export default function Routers() {
                 path="/gallery/bill/:id"
                 exact
                 render={(propsHistory) => <SingleBill {...propsHistory} />}
+            />
+            <Route
+                path="/profile"
+                exact
+                render={(propsHistory) => <UserDetails {...propsHistory} />}
             />
 
             <Route

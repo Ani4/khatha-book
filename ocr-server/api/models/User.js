@@ -2,13 +2,20 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 const saltRounds = 10;
-
+function ID() {
+    return Math.random().toString(36).substr(2, 8);
+}
 const UserSchema = new Schema(
     {
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         first_name: { type: String, required: true },
         last_name: { type: String, required: true },
+        user_type: {
+            type: String,
+            enum: ["CUSTOMER", "SHOPKEEPER"],
+        },
+        user_id: { type: String, default: ID, unique: true },
     },
     {
         timestamps: true,

@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import Routers from "../Routes/Routers";
 import SideBar from "./SideBar";
 import Profile from "./Profile";
 
 export default function Dashboard(props) {
+    // context creator
+    const UserContext = createContext({
+        user: JSON.parse(localStorage.getItem("user_for_bill_ocr")),
+    });
+    const user = useContext(UserContext);
     const [width, setWidth] = useState(window.innerWidth);
-    const [user] = useState(
-        JSON.parse(localStorage.getItem("user_for_bill_ocr"))
-    );
+
     const [, setHeight] = useState(window.innerHeight);
     const updateWidthAndHeight = () => {
         setWidth(window.innerWidth);
@@ -33,7 +36,7 @@ export default function Dashboard(props) {
         console.log(document.querySelector(".sidebar").style.display);
     };
     return (
-        <>
+        <UserContext.Provider>
             <div id="wrapper">
                 {/* Side Bar : START*/}
                 <SideBar />
@@ -106,7 +109,7 @@ export default function Dashboard(props) {
                                         <div className="nav-item dropdown no-arrow">
                                             {/* TODO:  */}
                                             <Profile
-                                                user={user}
+                                                user={user.user}
                                                 handleLogout={
                                                     props.handleLogout
                                                 }
@@ -167,6 +170,6 @@ export default function Dashboard(props) {
                     <i className="fas fa-angle-up" />
                 </button>
             </div>
-        </>
+        </UserContext.Provider>
     );
 }

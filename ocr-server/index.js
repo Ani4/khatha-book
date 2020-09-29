@@ -52,7 +52,6 @@ app.use(bodyParser.json());
 app.use("/Files", express.static(path.resolve("./ocr-server/Files")));
 app.use(morgan("dev"));
 
-console.log(path.resolve("./ocr-server/Files"));
 //   model for database
 const Bill = require("./api/models/Bill");
 const User = require("./api/models/User");

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../config/api";
 import { baseUrl } from "../../config/config";
+import Report from "./Report";
 
 export default function Home() {
     const [total, setTotal] = useState(0);
@@ -70,6 +71,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            <Report />
             <div className="row">
                 <div className="col">
                     <div className="beautiful bs-callout bs-callout-info">

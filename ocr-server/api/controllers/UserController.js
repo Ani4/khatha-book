@@ -4,12 +4,13 @@ const jwt = require("jsonwebtoken");
 const { secretKey } = require("../../config/config");
 
 exports.create_user = (req, res, next) => {
-    const { email, password, firstName, lastName } = req.body;
+    const { email, password, firstName, lastName, user_type } = req.body;
     const user = new User({
         email,
         password,
         first_name: firstName,
         last_name: lastName,
+        user_type,
     });
     user.save(function (err) {
         if (err) {
@@ -52,10 +53,8 @@ exports.authenticate = (req, res, next) => {
                         expiresIn: "1h",
                     });
                     res.cookie("token", token, { httpOnly: true }).json({
-                        email: user.email,
-                        first_name: user.first_name,
-                        last_name: user.last_name,
-                        _id: user._id,
+                        ...user._doc,
+                        password: "",
                     });
                 }
             });
@@ -65,4 +64,14 @@ exports.authenticate = (req, res, next) => {
 
 exports.logout = (req, res, next) => {
     res.clearCookie("token", { httpOnly: true }).sendStatus(200);
+};
+
+exports.user_update = (req, res, next) => {
+    console.log(req.params);
+    const _id = req.params.id;
+    User.findOneAndUpdate(
+        { _id },
+        { $set: req.body },
+        { new: true }
+    ).then((user) => res.send("user updated"));
 };

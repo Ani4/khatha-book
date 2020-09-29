@@ -40,6 +40,7 @@ export default function SideBar() {
                             <span>Bill Gallery</span>
                         </NavLink>
                     </li>
+
                     <li className="nav-item" role="presentation">
                         <NavLink
                             activeClassName="active"
@@ -48,6 +49,16 @@ export default function SideBar() {
                         >
                             <i className="fas fa-table" />
                             <span>Bill Submission&nbsp;</span>
+                        </NavLink>
+                    </li>
+                    <li className="nav-item" role="presentation">
+                        <NavLink
+                            activeClassName="active"
+                            className="nav-link"
+                            to="/profile"
+                        >
+                            <i className="fas fa-user" />
+                            <span> Profile</span>
                         </NavLink>
                     </li>
                     <li className="nav-item" role="presentation" />

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 export default function Profile({ user, handleLogout }) {
     const [loginShow, setLoginShow] = useState(false);
+    // const user = useContext();
+
     return (
         <div
             className="dropdown-toggle nav-link"
