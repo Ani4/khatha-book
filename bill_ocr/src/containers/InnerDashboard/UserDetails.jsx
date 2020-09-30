@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function UserDetails() {
+    const [user] = useState(
+        JSON.parse(localStorage.getItem("user_for_bill_ocr"))
+    );
     return (
         <div className="container-fluid">
             <h3 className="text-dark mb-4">Profile</h3>
@@ -85,7 +88,9 @@ export default function UserDetails() {
                                                 <div className="form-group">
                                                     <label htmlFor="username">
                                                         <strong>
-                                                            Username
+                                                            {user.first_name +
+                                                                " " +
+                                                                user.lst_name}
                                                         </strong>
                                                     </label>
                                                     <input

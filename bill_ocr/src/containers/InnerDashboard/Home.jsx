@@ -10,6 +10,9 @@ export default function Home() {
     const [userID] = useState(
         JSON.parse(localStorage.getItem("user_for_bill_ocr"))._id
     );
+    const [user_type] = useState(
+        JSON.parse(localStorage.getItem("user_for_bill_ocr")).user_type
+    );
     useEffect(() => {
         api.get(baseUrl + `totals/${userID}`).then(({ data }) => {
             setTotal(data);
@@ -71,7 +74,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <Report />
+            {user_type === "CUSTOMER" ? <></> : <Report />}
             <div className="row">
                 <div className="col">
                     <div className="beautiful bs-callout bs-callout-info">
