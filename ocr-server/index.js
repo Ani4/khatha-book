@@ -47,8 +47,8 @@ mongoose
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.options("*", cors(corsOptions));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use("/Files", express.static(path.resolve("./ocr-server/Files")));
 app.use(morgan("dev"));
 
